@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Researcher & Student</title>
+  <meta name="description" content="Personal academic site — Mathematics & Computer Science. Putnam 37, Rice University, Georgia Tech." />
+
+  <style>
+    /* -------------------------------------------------------------
+       APPLE × PIERRE JACOB DESIGN SYSTEM
+       Minimal, academic typography paired with Apple frosted glass & depth
+    ------------------------------------------------------------- */
+    :root {
+      --bg: #fafafa;
+      --surface: rgba(255, 255, 255, 0.82);
+      --surface-solid: #ffffff;
+      --surface-hover: #f5f5f7;
+      --card-border: rgba(0, 0, 0, 0.08);
+      --card-border-hover: rgba(0, 0, 0, 0.16);
+      --text-primary: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --text-tertiary: #86868b;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --pill-bg: #f5f5f7;
+      --pill-border: rgba(0, 0, 0, 0.06);
+      --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-mono: "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
+      --nav-blur: blur(20px);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #000000;
+      --surface: rgba(28, 28, 30, 0.8);
+      --surface-solid: #1c1c1e;
+      --surface-hover: #2c2c2e;
+      --card-border: rgba(255, 255, 255, 0.12);
+      --card-border-hover: rgba(255, 255, 255, 0.25);
+      --text-primary: #f5f5f7;
+      --text-secondary: #a1a1a6;
+      --text-tertiary: #6e6e73;
+      --accent: #2997ff;
+      --accent-hover: #0077ed;
+      --pill-bg: #1c1c1e;
+      --pill-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      font-size: 16px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Fixed Modern Glass Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: var(--nav-blur);
+      -webkit-backdrop-filter: var(--nav-blur);
+      background: var(--surface);
+      border-bottom: 1px solid var(--card-border);
+      transition: var(--transition);
+    }
+
+    .nav-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-badge {
+      font-size: 0.72rem;
+      padding: 0.15rem 0.45rem;
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      border-radius: 99px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--pill-border);
+      border-radius: 99px;
+      padding: 0.35rem 0.65rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      color: var(--text-primary);
+      background-color: var(--pill-bg);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 6rem;
+      flex: 1;
+    }
+
+    /* Hero Section (Pierre Jacob layout with Apple typography) */
+    .hero {
+      margin-bottom: 3.5rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: 2.75rem;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-bio {
+      font-size: 1.18rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 720px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-bio strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Social / Quick Action Pills */
+    .links-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .pill-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.95rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      background: var(--surface-solid);
+      border: 1px solid var(--card-border);
+      border-radius: 99px;
+      text-decoration: none;
+      transition: var(--transition);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .pill-link:hover {
+      background: var(--surface-hover);
+      border-color: var(--card-border-hover);
+      transform: translateY(-1px);
+    }
+
+    .pill-link svg {
+      width: 14px;
+      height: 14px;
+      stroke-width: 2;
+      fill: none;
+      stroke: currentColor;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 3.5rem 0 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .section-sub {
+      font-size: 0.8rem;
+      font-weight: 450;
+      color: var(--text-tertiary);
+    }
+
+    /* Apple Bento-style Highlights Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .bento-card {
+      background: var(--surface-solid);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.4rem;
+      position: relative;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .bento-card:hover {
+      border-color: var(--card-border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-tertiary);
+      margin-bottom: 0.35rem;
+    }
+
+    .card-value {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 0.3rem;
+      font-family: var(--font-stack);
+    }
+
+    .card-desc {
+      font-size: 0.86rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin-top: 0.85rem;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      background: var(--pill-bg);
+      border: 1px solid var(--pill-border);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      color: var(--text-secondary);
+      align-self: flex-start;
+    }
+
+    /* Timeline Section (Pierre Jacob style clean log) */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--card-border);
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-date {
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      color: var(--text-tertiary);
+    }
+
+    .timeline-content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-content p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 2.5rem 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      text-align: center;
+      background: var(--surface);
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 2.1rem;
+      }
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="brand">
+        <span>Your Name</span>
+        <span class="brand-badge">2027</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#highlights">Highlights</a></li>
+          <li><a href="#trajectory">Trajectory</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span id="themeLabel">Dark</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content Container -->
+  <main id="about">
+    
+    <!-- Hero / Pierre Jacob Intro -->
+    <section class="hero">
+      <p class="hero-eyebrow">Mathematics &amp; Computer Science</p>
+      <h1 class="hero-title">Researcher, problem solver, and builder.</h1>
+      
+      <p class="hero-bio">
+        Welcome! I am an undergraduate researcher focused on pure mathematics, algorithms, and computational modeling. 
+        In <strong>Summer 2027</strong>, I will be conducting research with <strong>Dr. Illya's Lab at Rice University</strong>. 
+        Starting in <strong>Fall 2027</strong>, I will continue my studies as a transfer student at the 
+        <strong>Georgia Institute of Technology</strong>.
+      </p>
+
+      <!-- External Links Bar -->
+      <div class="links-bar">
+        <!-- Google Scholar -->
+        <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" class="pill-link">
+          <svg viewBox="0 0 24 24"><path d="M12 2L1 8.5 12 15l11-6.5L12 2z"></path><path d="M5 10.5v6c0 3.5 7 5.5 7 5.5s7-2 7-5.5v-6"></path></svg>
+          Google Scholar
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="pill-link">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          LinkedIn
+        </a>
+
+        <!-- X (Twitter) -->
+        <a href="https://x.com/yourhandle" target="_blank" rel="noopener noreferrer" class="pill-link">
+          <svg viewBox="0 0 24 24"><path d="M4 4l16 16m0-16L4 20"></path></svg>
+          X (@yourhandle)
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer" class="pill-link">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="4"></rect><polygon points="10 9 15 12 10 15 10 9"></polygon></svg>
+          YouTube
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:your.email@institution.edu" class="pill-link">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          Email
+        </a>
+      </div>
+    </section>
+
+    <!-- Apple-style Key Metrics & Highlights Bento Grid -->
+    <h2 class="section-title" id="highlights">
+      Key Highlights
+      <span class="section-sub">Competitions &amp; Research</span>
+    </h2>
+
+    <div class="bento-grid">
+      
+      <!-- Putnam Card -->
+      <div class="bento-card">
+        <div>
+          <span class="card-label">William Lowell Putnam Competition</span>
+          <div class="card-value">Score: 37</div>
+          <p class="card-desc">
+            Placed comfortably in the top tier nationwide in the preeminent university mathematics competition in North America.
+          </p>
+        </div>
+        <span class="card-tag">Competitive Mathematics</span>
+      </div>
+
+      <!-- Rice Lab Card -->
+      <div class="bento-card">
+        <div>
+          <span class="card-label">Research Fellowship</span>
+          <div class="card-value">Rice University</div>
+          <p class="card-desc">
+            Joining <strong>Dr. Illya's Lab</strong> for Summer 2027, focusing on advanced computational and theoretical modeling problems.
+          </p>
+        </div>
+        <span class="card-tag">Summer 2027</span>
+      </div>
+
+      <!-- Georgia Tech Card -->
+      <div class="bento-card">
+        <div>
+          <span class="card-label">Undergraduate Education</span>
+          <div class="card-value">Georgia Tech</div>
+          <p class="card-desc">
+            Transferring to Georgia Tech for Fall 2027 to continue rigorous interdisciplinary work in Math &amp; Computing.
+          </p>
+        </div>
+        <span class="card-tag">Fall 2027 Matriculation</span>
+      </div>
+
+      <!-- COMAP MCM & HackUTA Card -->
+      <div class="bento-card">
+        <div>
+          <span class="card-label">Modeling &amp; Development</span>
+          <div class="card-value">MCM &amp; HackUTA</div>
+          <p class="card-desc">
+            Participant in the international <strong>COMAP MCM</strong> mathematical contest in modeling, and project builder at <strong>HackUTA</strong>.
+          </p>
+        </div>
+        <span class="card-tag">Hackathon &amp; Modeling</span>
+      </div>
+
+    </div>
+
+    <!-- Academic & Experience Feed (Pierre Jacob Timeline Style) -->
+    <h2 class="section-title" id="trajectory">
+      Timeline &amp; Appointments
+      <span class="section-sub">Chronological Record</span>
+    </h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">Fall 2027</div>
+        <div class="timeline-content">
+          <h3>Georgia Institute of Technology</h3>
+          <p>Incoming transfer student. Continuing coursework and research in applied mathematics, computer science theory, and systems.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Summer 2027</div>
+        <div class="timeline-content">
+          <h3>Rice University — Dr. Illya's Lab</h3>
+          <p>Visiting Undergraduate Researcher. Engaging in laboratory research, theoretical derivations, and algorithmic implementation.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Past / Recent</div>
+        <div class="timeline-content">
+          <h3>William Lowell Putnam Mathematical Competition</h3>
+          <p>Official Score: <strong>37</strong>. Solved challenging problems across combinatorics, linear algebra, number theory, and analysis.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Recent</div>
+        <div class="timeline-content">
+          <h3>COMAP Mathematical Contest in Modeling (MCM)</h3>
+          <p>Co-authored an end-to-end mathematical solution over an intensive 96-hour period, applying differential equations and stochastic simulation to open-ended world problems.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Recent</div>
+        <div class="timeline-content">
+          <h3>HackUTA Participation</h3>
+          <p>Built and presented a rapid prototype software project at UT Arlington's flagship hackathon, focusing on practical engineering and team collaboration.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Clean Minimalist Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Your Name. Built in the spirit of academic clarity.</div>
+      <div>Designed with an Apple-inspired minimalist aesthetic.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Set dynamic current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Dark/Light Mode Switcher
+    const toggleBtn = document.getElementById("themeToggle");
+    const themeLabel = document.getElementById("themeLabel");
+    
+    // Check saved preference or system preference
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      themeLabel.textContent = "Light";
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+      themeLabel.textContent = "Dark";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      if (currentTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "light");
+        themeLabel.textContent = "Dark";
+        localStorage.setItem("theme", "light");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        themeLabel.textContent = "Light";
+        localStorage.setItem("theme", "dark");
+      }
+    });
+  </script>
+</body>
+</html>
