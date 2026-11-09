@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Assil — Industrial Engineering & Mathematics</title>
-  <link rel="icon" type="image/png" href="./favicon.png" />
+  
+  <!-- Browser Tab Favicon (Upload your Obsidian graph image as favicon.png) -->
+  <link rel="icon" type="image/png" href="favicon.png?v=2" />
+  <link rel="shortcut icon" type="image/png" href="favicon.png?v=2" />
+  <link rel="apple-touch-icon" href="favicon.png?v=2" />
+  
   <meta name="description" content="Personal academic website of Assil — Industrial Engineering, Putnam Top 5%, Rice University Researcher, incoming Georgia Tech transfer." />
 
   <style>
@@ -77,7 +82,7 @@
       overflow-x: hidden;
     }
 
-    /* Interactive Mouse Background Canvas (mbscry.github.io style) */
+    /* Interactive Mouse Background Canvas */
     #interactive-canvas {
       position: fixed;
       top: 0;
@@ -118,6 +123,14 @@
       display: flex;
       align-items: center;
       gap: 0.55rem;
+    }
+
+    .nav-logo {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 1px solid var(--border);
     }
 
     .nav-brand span.tag {
@@ -180,7 +193,7 @@
       padding: 3.5rem 1.5rem 5rem;
     }
 
-    /* Two-Column Academic Hero (bbarrientosf & matthewbrun inspired) */
+    /* Two-Column Academic Hero */
     .profile-hero {
       display: grid;
       grid-template-columns: 240px 1fr;
@@ -209,6 +222,7 @@
       box-shadow: var(--shadow-md);
     }
 
+    /* Permanent Static Avatar Wrapper */
     .avatar-wrapper {
       width: 165px;
       height: 165px;
@@ -217,7 +231,6 @@
       border: 2px solid var(--border);
       margin-bottom: 1rem;
       position: relative;
-      cursor: pointer;
       background: var(--pill-bg);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     }
@@ -226,30 +239,13 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       display: block;
       transition: transform 0.4s ease;
     }
 
     .avatar-wrapper:hover img {
-      transform: scale(1.04);
-    }
-
-    .avatar-hint {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.55);
-      color: #fff;
-      font-size: 0.72rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .avatar-wrapper:hover .avatar-hint {
-      opacity: 1;
+      transform: scale(1.03);
     }
 
     .sidebar-name {
@@ -367,7 +363,7 @@
       font-weight: 500;
     }
 
-    /* Section Headers (matthewbrun / al-folio style) */
+    /* Section Headers */
     .section-header {
       display: flex;
       justify-content: space-between;
@@ -389,7 +385,7 @@
       color: var(--text-muted);
     }
 
-    /* News / Milestones Table (bbarrientosf style) */
+    /* News / Milestones Table */
     .news-list {
       background: var(--surface);
       backdrop-filter: blur(12px);
@@ -428,7 +424,7 @@
       color: var(--text-primary);
     }
 
-    /* Spotlight Bento Cards (Apple + Mouse Tracking Glow) */
+    /* Spotlight Bento Cards */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -610,13 +606,14 @@
 </head>
 <body>
 
-  <!-- Interactive Particle & Mouse Constellation Canvas (mbscry.github.io inspired) -->
+  <!-- Interactive Particle & Mouse Constellation Canvas -->
   <canvas id="interactive-canvas"></canvas>
 
   <!-- Sticky Glass Navigation -->
   <header>
     <div class="nav-container">
       <a href="#" class="nav-brand">
+        <img src="favicon.png" alt="Logo" class="nav-logo" />
         Assil
         <span class="tag">IE &amp; Math</span>
       </a>
@@ -636,13 +633,11 @@
     <!-- Two-Column Academic Hero -->
     <section class="profile-hero" id="about">
       
-      <!-- Left Column: Photo + Links -->
+      <!-- Left Column: Permanent Portrait Photo + Links -->
       <aside class="profile-sidebar">
-        <div class="avatar-wrapper" id="avatarBox" title="Click to load your photo if profile.jpg isn't set">
-          <img id="profileImage" src="profile.jpg" alt="Portrait of Assil" onerror="this.src='https://ui-avatars.com/api/?name=Assil&size=320&background=0066cc&color=fff'" />
-          <div class="avatar-hint">Click to select your photo</div>
+        <div class="avatar-wrapper">
+          <img id="profileImage" src="profile.jpg" alt="Portrait of Assil" />
         </div>
-        <input type="file" id="photoInput" accept="image/*" style="display: none;" />
 
         <div class="sidebar-name">Assil</div>
         <div class="sidebar-role">Industrial Engineering Major</div>
@@ -695,7 +690,7 @@
 
     </section>
 
-    <!-- News / Milestones Section (matthewbrun & bbarrientosf style) -->
+    <!-- News / Milestones Section -->
     <div class="section-header" id="news">
       <h2>News &amp; Trajectory</h2>
       <span>CHRONOLOGICAL LOG</span>
@@ -826,36 +821,11 @@
   </footer>
 
   <script>
-    // 1. Dynamic Year
+    // 1. Dynamic Year & Clear any old cached photo from localStorage
     document.getElementById("year").textContent = new Date().getFullYear();
+    localStorage.removeItem("assil_profile_photo");
 
-    // 2. Local Photo Picker Fallback (Saves your uploaded photo in browser storage if clicked)
-    const avatarBox = document.getElementById("avatarBox");
-    const photoInput = document.getElementById("photoInput");
-    const profileImage = document.getElementById("profileImage");
-
-    const savedPhoto = localStorage.getItem("assil_profile_photo");
-    if (savedPhoto) {
-      profileImage.src = savedPhoto;
-    }
-
-    avatarBox.addEventListener("click", () => photoInput.click());
-    photoInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        profileImage.src = event.target.result;
-        try {
-          localStorage.setItem("assil_profile_photo", event.target.result);
-        } catch (err) {
-          console.warn("Image too large for localStorage, loaded for session.");
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-
-    // 3. Theme Toggle (Light / Dark Mode)
+    // 2. Theme Toggle (Light / Dark Mode)
     const themeToggle = document.getElementById("themeToggle");
     const htmlEl = document.documentElement;
     const savedTheme = localStorage.getItem("theme");
@@ -873,7 +843,7 @@
       themeToggle.textContent = next === "dark" ? "☀️ Light" : "🌙 Dark";
     });
 
-    // 4. Apple Card Radial Spotlight Tracking
+    // 3. Apple Card Radial Spotlight Tracking
     document.querySelectorAll(".spotlight-card").forEach((card) => {
       card.addEventListener("mousemove", (e) => {
         const rect = card.getBoundingClientRect();
@@ -882,7 +852,7 @@
       });
     });
 
-    // 5. Interactive Mouse-Movement Particle Network (mbscry.github.io style)
+    // 4. Interactive Mouse-Movement Particle Network
     const canvas = document.getElementById("interactive-canvas");
     const ctx = canvas.getContext("2d");
 
@@ -930,7 +900,6 @@
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
-        // Subtle interactive push/pull with mouse movement
         if (mouse.x !== null && mouse.y !== null) {
           const dx = mouse.x - p.x;
           const dy = mouse.y - p.y;
@@ -944,19 +913,16 @@
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
 
-            // Gentle attraction toward cursor
             p.x += dx * 0.008;
             p.y += dy * 0.008;
           }
         }
 
-        // Draw Node
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = particleColor;
         ctx.fill();
 
-        // Connect nearby nodes
         for (let j = i + 1; j < particles.length; j++) {
           let p2 = particles[j];
           const dx = p.x - p2.x;
@@ -982,3 +948,4 @@
   </script>
 </body>
 </html>
+
